@@ -3,6 +3,8 @@ array-path
 
 easy to access element of a structure regardless of nesting levels
 
+array_path use '/' as default path seperator,if you want use other character,
+define ARRAY_PATH_SEPERATOR before include array_path
 sample:
 
     <?php
