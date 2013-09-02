@@ -68,3 +68,7 @@ assert('!isset($player["building"]["blacksmith"])');
 
 array_path_unset($player, 'heroes', 0, 'attr');
 assert('!isset($player["heroes"][0]["attr"])');
+
+array_path_walk($player, function($key, $value) {
+	echo $key . ":" . $value . "\n";
+});

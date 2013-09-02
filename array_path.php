@@ -111,6 +111,26 @@ function array_path_isset(&$stack) {
 }
 
 /**
+ * 	void array_path_walk ( array &$array, callable $func)
+ *  Applies the user-defined function funcname to each element of the array.
+ *  recursivly walk the whole array, pass the array_path key and value to func
+ *  note:dont modify array structure in func,or the result may be unpredictable
+ */
+function array_path_walk(&$array, $func, $prefix='') {
+	if (!is_array($array) || !is_callable($func)) {
+		throw new Exception('param error');
+	}
+
+	foreach($array as $key => $value) {
+		if ($prefix !== '') $key = $prefix . ARRAY_PATH_SEPERATOR . $key;
+		if (is_array($value)) {
+			array_path_walk($value, $func, $key);
+		} else {
+			$func($key, $value);
+		}
+	}
+}
+/**
  *  mixed array_path_parse(array $args)
  *  create array path from arguments
  */
