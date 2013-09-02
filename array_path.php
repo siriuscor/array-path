@@ -121,6 +121,7 @@ function array_path_walk(&$array, $func, $prefix='') {
 		throw new Exception('param error');
 	}
 
+	if (empty($array)) $func($prefix, null);
 	foreach($array as $key => $value) {
 		if ($prefix !== '') $key = $prefix . ARRAY_PATH_SEPERATOR . $key;
 		if (is_array($value)) {
