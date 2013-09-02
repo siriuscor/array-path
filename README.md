@@ -54,3 +54,21 @@ sample:
     array_path_set($player, 'heroes', 2, array('id' => 3));
 
     array_path_unset($player, 'heroes', 1); //this will make heroes node a dict
+
+    array_path_walk($player, function($key, $value) {
+        echo $key . ":" . $value . "\n";
+    });
+    //will output as follow:
+    
+    // level:10
+    // silver:20
+    // building:
+    // heroes/0/id:1
+    // heroes/0/name:jack
+    // heroes/0/attr/str:15
+    // heroes/0/attr/def:20
+    // heroes/1/id:2
+    // heroes/1/name:jane
+    // heroes/1/attr/str:13
+    // heroes/1/attr/def:26
+    // heroes/2/id:3
