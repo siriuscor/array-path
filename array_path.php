@@ -6,14 +6,14 @@ if (!defined('ARRAY_PATH_SEPERATOR')) {
  * 	mixed array_path_get ( array &$array, string $path1 [, string $path2 ...])
  *  get value for nested array via array path
  */
-function array_path_get(&$stack) {
+function array_path_get(&$stack, $path) {
 	$args = func_get_args();
 	if (count($args) < 2) {
-		throw new Exception('need 2 params in array_path_set');
+		throw new Exception('function need 2 arguments');
 	}
 	array_shift($args);
 	if (!is_array($stack)) {
-		throw new Exception('args 0 not array in array_path_get');
+		throw new Exception('argument 1 need to be array');
 	}
 
 	$path = array_path_parse($args);
@@ -33,15 +33,15 @@ function array_path_get(&$stack) {
  *  last param is the value been set
  *  it will create any node through the path if not exist
  */
-function array_path_set(&$stack) {
+function array_path_set(&$stack, $path, $value) {
 	$args = func_get_args();
 	if (count($args) < 3) {
-		throw new Exception('need 3 params in array_path_set');
+		throw new Exception('function need 3 arguments');
 	}
 	array_shift($args);
 	$value = array_pop($args);
 	if (!is_array($stack)) {
-		throw new Exception('args 0 not array in array_path_set');
+		throw new Exception('argument 1 need to be array');
 	}
 
 	$path = array_path_parse($args);
@@ -61,14 +61,14 @@ function array_path_set(&$stack) {
  *  unset value for nested array via array path
  *  if middle node of path not exist,it will simply return void
  */
-function array_path_unset(&$stack) {
+function array_path_unset(&$stack, $path) {
 	$args = func_get_args();
 	if (count($args) < 2) {
-		throw new Exception('need 2 params in array_path_set');
+		throw new Exception('function need 2 arguments');
 	}
 	$stack = & array_shift($args);
 	if (!is_array($stack)) {
-		throw new Exception('args 0 not array in array_path_set');
+		throw new Exception('argument 1 need to be array');
 	}
 
 	$path = array_path_parse($args);
@@ -88,14 +88,14 @@ function array_path_unset(&$stack) {
  *  check value for nested array via array path
  *  if middle node of path not exist,it returns false
  */
-function array_path_isset(&$stack) {
+function array_path_isset(&$stack, $path) {
 	$args = func_get_args();
 	if (count($args) < 2) {
-		throw new Exception('need 2 params in array_path_set');
+		throw new Exception('function need 2 arguments');
 	}
 	$stack = & array_shift($args);
 	if (!is_array($stack)) {
-		throw new Exception('args 0 not array in array_path_set');
+		throw new Exception('argument 1 need to be array');
 	}
 
 	$path = array_path_parse($args);
