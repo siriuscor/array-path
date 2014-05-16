@@ -114,7 +114,7 @@ function array_path_isset(&$stack, $path) {
  * 	void array_path_walk ( array &$array, callable $func)
  *  Applies the user-defined function funcname to each element of the array.
  *  recursivly walk the whole array, pass the array_path key and value to func
- *  note:dont modify array structure in func,or the result may be unpredictable
+ *  note:don't modify array structure in func,or the result may be unpredictable
  */
 function array_path_walk(&$array, $func, $prefix='') {
 	if (!is_array($array) || !is_callable($func)) {
